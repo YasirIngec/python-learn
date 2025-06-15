@@ -1,0 +1,6 @@
+- Temel veri tipleri
+- Koşullu ifadeler
+- Döngüler
+- Fonksiyonlar
+- Dosya işlemleri
+- Modül kullanımı

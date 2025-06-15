@@ -1,0 +1,2 @@
+def selamla():
+    print('Selam!')

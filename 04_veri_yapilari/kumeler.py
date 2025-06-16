@@ -18,3 +18,7 @@ B = {3, 4, 5}
 print("Kesişim:", A & B)          # {3}
 print("Birleşim:", A | B)         # {1, 2, 3, 4, 5}
 print("Fark:", A - B)             # {1, 2}
+
+# Çift sayıları kümeye ekleyelim
+ciftler = {x for x in range(10) if x % 2 == 0}
+print(ciftler)  # {0, 2, 4, 6, 8}

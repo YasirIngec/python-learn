@@ -1,8 +1,24 @@
+# Bu program hesap_modulu.py içindeki fonksiyonları kullanarak hesaplama yapar
+
 import hesap_modulu
 
-x = int(input("1. sayı: "))
-y = int(input("2. sayı: "))
+try:
+    sayi1 = float(input("1. sayıyı girin: "))
+    islem = input("İşlem türü (+ - * /): ")
+    sayi2 = float(input("2. sayıyı girin: "))
 
-print("Toplam:", hesap_modulu.topla(x, y))
-print("Fark:", hesap_modulu.fark(x, y))
-print("Çarpım:", hesap_modulu.carp(x, y))
+    if islem == "+":
+        sonuc = hesap_modulu.topla(sayi1, sayi2)
+    elif islem == "-":
+        sonuc = hesap_modulu.cikar(sayi1, sayi2)
+    elif islem == "*":
+        sonuc = hesap_modulu.carp(sayi1, sayi2)
+    elif islem == "/":
+        sonuc = hesap_modulu.bol(sayi1, sayi2)
+    else:
+        sonuc = "Geçersiz işlem."
+
+    print("Sonuç:", sonuc)
+
+except ValueError:
+    print("Lütfen sayıları doğru girin.")

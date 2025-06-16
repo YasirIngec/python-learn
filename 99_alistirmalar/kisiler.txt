@@ -1,0 +1,5 @@
+Ali,Ankara
+Ayşe,İstanbul
+Veli,İzmir
+Zeynep,Ankara
+Mert,Bursa

@@ -1,63 +1,48 @@
-# pip: Python modül yöneticisidir. Modül yükleme, kaldırma, güncelleme gibi işlemleri yapar.
+# pip, Python paketlerini yüklemek ve yönetmek için kullanılan resmi paket yöneticisidir.
+# pip sayesinde PyPI'daki (Python Package Index) binlerce paketi kolayca projeye dahil edebiliriz.
 
-# ============================================
-# 1. Yeni bir modül yüklemek
-# ============================================
+# Terminal/komut satırı üzerinden kullanılır.
+# Aşağıda en yaygın pip komutları ve açıklamaları yer alır:
 
-# pip install <modul_adi>
+# Paket yüklemek:
+# pip install paket_adi
 # Örnek:
 # pip install requests
 
-# Bu komut 'requests' adlı modülü PyPI'den indirip kurar.
+# Belirli bir sürümü yüklemek:
+# pip install paket_adi==1.2.3
 
-
-# ============================================
-# 2. Modülü kaldırmak (uninstall)
-# ============================================
-
-# pip uninstall <modul_adi>
-# Örnek:
-# pip uninstall requests
-
-# Bu komut requests modülünü sistemden kaldırır.
-
-
-# ============================================
-# 3. Yüklü modülleri listelemek
-# ============================================
-
+# Yüklü paketleri listelemek:
 # pip list
 
-# Sistemde yüklü olan tüm modülleri ve sürümlerini listeler.
+# Paket bilgilerini görmek:
+# pip show paket_adi
 
+# Paket güncellemek:
+# pip install --upgrade paket_adi
 
-# ============================================
-# 4. Modülün detaylarını görmek (sürüm, yol vs.)
-# ============================================
+# Paket kaldırmak:
+# pip uninstall paket_adi
 
-# pip show <modul_adi>
-# Örnek:
-# pip show pandas
-
-# pandas modülünün versiyonu, yükleme yolu ve bağımlılık bilgilerini verir.
-
-
-# ============================================
-# 5. Tüm bağımlılıkları requirements.txt dosyasına aktarmak
-# ============================================
-
-# pip freeze > requirements.txt
-
-# Aktif ortamda yüklü tüm modülleri ve sürümlerini dosyaya yazar.
-# Bu dosya, bir projeyi başka ortamda yeniden kurmak için kullanılır.
-
-
-# ============================================
-# 6. requirements.txt dosyasından kurulum yapmak
-# ============================================
-
+# Tüm bağımlılıkları requirements.txt dosyasından yüklemek:
 # pip install -r requirements.txt
 
-# requirements.txt içindeki listedeki tüm modülleri yükler.
-# Genellikle projeyi baştan kurarken kullanılır.
+# requirements.txt örneği:
+# pandas==2.2.2
+# matplotlib>=3.5
 
+# Yeni bir requirements.txt oluşturmak (projede yüklü olan paketleri listele):
+# pip freeze > requirements.txt
+
+# pip ile yüklenen paketi Python içinde kullanmak:
+import requests
+
+cevap = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+print("Status code:", cevap.status_code)
+print("JSON verisi:", cevap.json())
+
+# Hatalı kullanım: pip ile yüklenmemiş paketi import etmek
+try:
+    import bilinmeyen_paket
+except ModuleNotFoundError as e:
+    print("pip ile yüklenmemiş paket:", e)

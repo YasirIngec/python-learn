@@ -1,33 +1,62 @@
-# Liste (list), sıralı ve değiştirilebilir bir veri yapısıdır.
+# Liste, birden fazla değeri tek bir değişkende saklamak için kullanılır.
+# Köşeli parantez [ ] ile tanımlanır ve farklı türde veriler içerebilir.
 
-meyveler = ["elma", "armut", "muz"]
+# Temel liste tanımı
+meyveler = ["elma", "armut", "çilek"]
+sayilar = [1, 2, 3, 4, 5]
+karisik = [1, "iki", 3.0, True]
 
-print("Liste:", meyveler)
-print("İlk eleman:", meyveler[0])         # elma
-print("Son eleman:", meyveler[-1])        # muz
-print("Uzunluk:", len(meyveler))          # 3
+print("Meyveler:", meyveler)
+print("Sayilar:", sayilar)
+
+# Elemanlara erişim (index ile)
+print("İlk meyve:", meyveler[0])     # elma
+print("Son meyve:", meyveler[-1])    # çilek
+
+# Eleman değiştirme
+meyveler[1] = "muz"
+print("Yeni meyveler:", meyveler)
 
 # Eleman ekleme
-meyveler.append("çilek")
-print("Ekleme sonrası:", meyveler)
+meyveler.append("kiraz")
+print("Append sonrası:", meyveler)
+
+meyveler.insert(1, "portakal")  # Belirli index'e ekleme
+print("Insert sonrası:", meyveler)
 
 # Eleman silme
-meyveler.remove("armut")
-print("Silme sonrası:", meyveler)
+meyveler.remove("elma")
+print("Elma silindi:", meyveler)
 
-# Sıralama
-meyveler.sort()
-print("Sıralı:", meyveler)
+son = meyveler.pop()  # Son elemanı siler
+print("Pop edilen:", son)
+print("Kalanlar:", meyveler)
 
-# Döngü ile liste elemanlarını gezmek
-for meyve in meyveler:
-    print(f"- {meyve}")
+# Listeyi ters çevirme ve sıralama
+sayilar = [5, 1, 3, 2, 4]
+sayilar.sort()     # Küçükten büyüğe
+print("Sıralı:", sayilar)
 
-# Liste üreteçleri (list comprehension)
-kareler = [x**2 for x in range(5)]
-print(kareler)  # [0, 1, 4, 9, 16]
+sayilar.reverse()  # Ters çevirme
+print("Ters:", sayilar)
 
-# Eleman var mı kontrolü
-liste = ["elma", "armut"]
-print("elma" in liste)      # True
-print("muz" not in liste)   # True
+# Liste içinde liste (nested list)
+ogrenciler = [["Ali", 90], ["Ayşe", 85], ["Veli", 75]]
+print("İlk öğrenci adı:", ogrenciler[0][0])
+print("İlk öğrenci notu:", ogrenciler[0][1])
+
+# Hatalı kullanım: Index dışı erişim
+try:
+    print(meyveler[100])
+except IndexError as e:
+    print("Hata:", e)
+
+# Gerçek kullanım: Listeyi gezerek işlem yapmak
+notlar = [65, 70, 90, 45, 80]
+gecenler = []
+
+for n in notlar:
+    if n >= 60:
+        gecenler.append(n)
+
+print("Geçen notlar:", gecenler)

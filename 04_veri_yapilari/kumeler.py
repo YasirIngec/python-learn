@@ -1,24 +1,48 @@
-# Set (küme), sırasız ve benzersiz (tekrarsız) elemanlardan oluşur.
+# Kümeler (set), sırasız ve tekrarsız elemanlar içeren veri yapılarıdır.
+# Süslü parantez { } ile tanımlanır.
+# Elemanlar benzersizdir, yinelenen değerler otomatik olarak elenir.
 
-sayilar = {1, 2, 3, 3, 4, 5, 5}
-print("Küme:", sayilar)  # çıktı: {1, 2, 3, 4, 5}
+# Temel küme tanımı
+renkler = {"kırmızı", "yeşil", "mavi", "kırmızı"}
+print("Renkler kümesi:", renkler)  # 'kırmızı' sadece bir kez görünür
+
+# Boş küme oluşturmak için set() kullanılır, çünkü {} boş sözlük olarak kabul edilir.
+bos_kume = set()
+print("Boş küme tipi:", type(bos_kume))  # <class 'set'>
 
 # Eleman ekleme
-sayilar.add(6)
-print("Ekleme sonrası:", sayilar)
+renkler.add("sarı")
+print("Yeni renk eklendi:", renkler)
 
 # Eleman silme
-sayilar.remove(3)
-print("3 silindi:", sayilar)
+renkler.remove("yeşil")
+print("Yeşil çıkarıldı:", renkler)
 
-# Küme işlemleri
-A = {1, 2, 3}
-B = {3, 4, 5}
+# discard() → eleman yoksa hata vermez
+renkler.discard("mor")  # hata vermez
+print("Mor çıkarılmaya çalışıldı:", renkler)
 
-print("Kesişim:", A & B)          # {3}
-print("Birleşim:", A | B)         # {1, 2, 3, 4, 5}
-print("Fark:", A - B)             # {1, 2}
+# clear() → tüm elemanları siler
+kume = {1, 2, 3}
+kume.clear()
+print("Temizlenmiş küme:", kume)
 
-# Çift sayıları kümeye ekleyelim
-ciftler = {x for x in range(10) if x % 2 == 0}
-print(ciftler)  # {0, 2, 4, 6, 8}
+# Küme işlemleri (matematiksel)
+A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+
+print("Birleşim (A ∪ B):", A | B)
+print("Kesişim (A ∩ B):", A & B)
+print("Fark (A - B):", A - B)
+print("Sadece birinde olanlar (A Δ B):", A ^ B)
+
+# Hatalı kullanım: İndeksleme yapılamaz (sırasızdır)
+try:
+    print(A[0])
+except TypeError as e:
+    print("Hata:", e)
+
+# Gerçek kullanım: Listede tekrar eden elemanları temizleme
+liste = ["elma", "armut", "elma", "muz", "armut"]
+benzersiz = list(set(liste))
+print("Benzersiz liste:", benzersiz)

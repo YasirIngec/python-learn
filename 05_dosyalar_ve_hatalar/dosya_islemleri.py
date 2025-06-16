@@ -1,21 +1,49 @@
-# Basit dosya yazma ve okuma
+# Python'da dosya işlemleri için `open()` fonksiyonu kullanılır.
+# Dosya açma modları:
+# "r": okuma (read) – Dosya yoksa hata verir
+# "w": yazma (write) – Dosya yoksa oluşturur, varsa içeriği siler
+# "a": ekleme (append) – Dosya yoksa oluşturur, sonuna ekleme yapar
+# "x": oluşturma (create) – Dosya varsa hata verir
+# "b": ikili dosya (binary) modu
+# "t": metin dosyası (varsayılan)
 
-# Yazma (write) – var olanı siler
+# Örnek 1: Dosya yazma ("w" modu – eski içerik silinir)
 with open("ornek.txt", "w", encoding="utf-8") as dosya:
-    dosya.write("Merhaba Python!\n")
-    dosya.write("Dosya işlemleri harika.")
+    dosya.write("Python dosya işlemleri\n")
+    dosya.write("İkinci satır\n")
 
-# Ekleme (append)
+# Örnek 2: Dosyaya ekleme ("a" modu – var olan içeriği silmeden ekler)
 with open("ornek.txt", "a", encoding="utf-8") as dosya:
-    dosya.write("\nBu satır sonradan eklendi.")
+    dosya.write("Yeni satır eklendi\n")
 
-# Okuma (read)
+# Örnek 3: Dosya okuma ("r" modu)
 with open("ornek.txt", "r", encoding="utf-8") as dosya:
     icerik = dosya.read()
     print("Dosya içeriği:\n", icerik)
 
-# Satır satır okuma (readlines)
+# Örnek 4: Satır satır okuma
 with open("ornek.txt", "r", encoding="utf-8") as dosya:
-    satirlar = dosya.readlines()
-    for i, satir in enumerate(satirlar, 1):
-        print(f"{i}. satır: {satir.strip()}")
+    for satir in dosya:
+        print("Satır:", satir.strip())
+
+# Hatalı kullanım: Var olmayan dosyayı okumaya çalışmak
+try:
+    with open("yok_dosya.txt", "r") as d:
+        print(d.read())
+except FileNotFoundError as e:
+    print("Hata:", e)
+
+# Gerçek senaryo: Öğrenci notlarını dosyadan okuma ve ortalama hesaplama
+with open("notlar.txt", "w", encoding="utf-8") as dosya:
+    dosya.write("Ali,90\nAyşe,85\nVeli,75")
+
+toplam = 0
+adet = 0
+
+with open("notlar.txt", "r", encoding="utf-8") as dosya:
+    for satir in dosya:
+        isim, notu = satir.strip().split(",")
+        toplam += int(notu)
+        adet += 1
+
+print("Ortalama not:", toplam / adet)
